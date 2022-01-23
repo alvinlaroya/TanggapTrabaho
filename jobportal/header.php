@@ -5,7 +5,7 @@
 </div>
 
 <div style=" width:1048px; height:70px; border:#339933 0px solid;">
-<!--logo--><div style="width:740px; height:68px; float:left; border:solid 0px #FF0000; padding-top:2%;"><a href="index.php" style="text-decoration:none; font-size:22px;">TanggapTrabaho</a></div>
+<!--logo--><div style="width:740px; height:68px; float:left; border:solid 0px #FF0000; padding-top:2%;"><a href="index.php" style="text-decoration:none; font-size:22px;">TanggapTrabahos</a></div>
 <div style="width:300px; height:68px; border: 0px solid #000000; float:left;font-family:Monotype Corsiva; font-size:12px;">
 
 
