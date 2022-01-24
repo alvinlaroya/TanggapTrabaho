@@ -2,17 +2,31 @@
 	 if(!isset($_SESSION['ADMIN_USERID'])){
       redirect(web_root."admin/index.php");
      }
-	 $mydb->setQuery("SELECT COMPANYID FROM `tblemployees` WHERE EMPLOYEEID=".$_SESSION['ADMIN_USERID']."");
+	 $mydb->setQuery("SELECT COMPANYID, `ROLE` FROM `tblemployees` e, `tblusers` u WHERE e.`EMPLOYEEID`=".$_SESSION['ADMIN_USERID']." AND u.`USERID`=".$_SESSION['ADMIN_USERID']."");
 	 $currCompanyID = $mydb->loadResultList();
 	 $companyId = '';
+	 $result = '';
 	 foreach($currCompanyID as $result) {
 		$companyId = $result->COMPANYID;
+		$role = $result->ROLE;
 		break;
 	 }
 ?> 
 	<div class="row">
     <div class="col-lg-12">
-            <h1 class="page-header">List of Employee's  <a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add New Employee</a>  </h1>
+            <h1 class="page-header">List of Employee's 
+				<?php 
+				if($_SESSION['ADMIN_USERID'] == '00018') {
+					echo '<a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add New Employee</a>';
+				} else {
+					if(($role == 'Employee' || $role == 'employee') || ($role == 'Staff' || $role == 'staff')) {
+
+					} else {
+						echo '<a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add New Employee</a>';
+					}
+				}
+				?>
+			</h1>
        		</div>
         	<!-- /.col-lg-12 -->
    		 </div>
@@ -39,8 +53,14 @@
 							  	<?php   
 							  		// $mydb->setQuery("SELECT * 
 											// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
-							  		$mydb->setQuery("SELECT * 
+									if($_SESSION['ADMIN_USERID'] == '00018') {
+										$mydb->setQuery("SELECT * 
+														FROM   `tblemployees`");
+									} else {
+										$mydb->setQuery("SELECT * 
 														FROM   `tblemployees` WHERE COMPANYID = $companyId");
+									}
+						
 							  		$cur = $mydb->loadResultList();
 
 									foreach ($cur as $result) { 

@@ -19,8 +19,8 @@ if(!$_SESSION['ADMIN_ROLE']=='Administrator'){
     <div class="row">
         <div class="col-md-4">
          <a  data-target="#myModal" data-toggle="modal" href="" title="Click here to Change Image." >
-            <img alt="" style="width:500px; height:400px;>"
-             title="" class="img-circle img-thumbnail isTooltip" src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" data-original-title="Usuario"> 
+            <img alt="" style="width:500px; height:400px;">
+             <title="" class="img-circle img-thumbnail isTooltip" src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" data-original-title="Usuario"> 
          </a>  
         </div>
         <div class="col-md-6">

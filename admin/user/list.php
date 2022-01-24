@@ -3,17 +3,28 @@
       redirect(web_root."admin/index.php");
      }
 
-	 $mydb->setQuery("SELECT COMPANYID FROM `tblemployees` WHERE EMPLOYEEID=".$_SESSION['ADMIN_USERID']."");
+	 $mydb->setQuery("SELECT COMPANYID, `ROLE` FROM `tblemployees` e, `tblusers` u WHERE e.`EMPLOYEEID`=".$_SESSION['ADMIN_USERID']." AND u.`USERID`=".$_SESSION['ADMIN_USERID']."");
 	 $currCompanyID = $mydb->loadResultList();
 	 $companyId = '';
+	 $result = '';
 	 foreach($currCompanyID as $result) {
 		$companyId = $result->COMPANYID;
+		$role = $result->ROLE;
 		break;
 	 }
 
 ?> 
        	 <div class="col-lg-12">
-            <h1 class="page-header">List of Users  <a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add User</a>  </h1>
+            <h1 class="page-header">List of Users
+	 			<?php 
+				/*  if(($role == 'Employee' || $role == 'employee') || ($role == 'Staff' || $role == 'staff')) {
+
+				} else {
+					echo '<a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add User</a>';
+				} */
+					
+				 ?>
+			</h1>
        		</div>
         	<!-- /.col-lg-12 --> 
    		 	<div class="col-lg-12"> 

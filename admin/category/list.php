@@ -2,10 +2,25 @@
 	  if (!isset($_SESSION['ADMIN_USERID'])){
       redirect(web_root."admin/index.php");
      } 
+
+	 $mydb->setQuery("SELECT COMPANYID, `ROLE` FROM `tblemployees` e, `tblusers` u WHERE e.`EMPLOYEEID`=".$_SESSION['ADMIN_USERID']." AND u.`USERID`=".$_SESSION['ADMIN_USERID']."");
+	 $currCompanyID = $mydb->loadResultList();
+	 $companyId = '';
+	 $result = '';
+	 foreach($currCompanyID as $result) {
+		$companyId = $result->COMPANYID;
+		$role = $result->ROLE;
+		break;
+	 }
 ?>
 	<div class="row">
        	 <div class="col-lg-12">
-            <h1 class="page-header">List of Categories  <a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add Category</a>  </h1>
+            <h1 class="page-header">List of Categories   </h1>
+			<?php
+				if($_SESSION['ADMIN_USERID'] == '00018') {
+					echo '<a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add Category</a> ';
+				}
+			?>
        		</div>
         	<!-- /.col-lg-12 -->
    		 </div>

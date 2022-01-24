@@ -37,7 +37,11 @@
 							  	<?php   
 							  		// $mydb->setQuery("SELECT * 
 											// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
-							  		$mydb->setQuery("SELECT * FROM `tblcompany` c  , `tbljobregistration` j, `tbljob` j2, `tblapplicants` a WHERE c.`COMPANYID`=j.`COMPANYID` AND  j.`JOBID`=j2.`JOBID` AND j.`APPLICANTID`=a.`APPLICANTID` AND j2.`COMPANYID` = $companyId");
+									if($_SESSION['ADMIN_USERID'] == '00018') {
+										$mydb->setQuery("SELECT * FROM `tblcompany` c  , `tbljobregistration` j, `tbljob` j2, `tblapplicants` a WHERE c.`COMPANYID`=j.`COMPANYID` AND  j.`JOBID`=j2.`JOBID` AND j.`APPLICANTID`=a.`APPLICANTID`");
+									} else {
+										$mydb->setQuery("SELECT * FROM `tblcompany` c  , `tbljobregistration` j, `tbljob` j2, `tblapplicants` a WHERE c.`COMPANYID`=j.`COMPANYID` AND  j.`JOBID`=j2.`JOBID` AND j.`APPLICANTID`=a.`APPLICANTID` AND j2.`COMPANYID` = $companyId");
+									}
 							  		$cur = $mydb->loadResultList();
 
 									foreach ($cur as $result) { 
