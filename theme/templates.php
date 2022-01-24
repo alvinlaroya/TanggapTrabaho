@@ -222,7 +222,6 @@ function sendEmail() {
   var subject = document.getElementById("subject").value;
   var message = document.getElementById("message").value;
 
-  alert(fullname)
   var templateParams = {
     name: fullname,
     subject: subject,
