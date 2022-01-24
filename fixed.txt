@@ -1,0 +1,10 @@
+employer:
+company > permissions*
+vacancy > permissions *
+manage user > permissions *
+applicants > permissions (view applied company) *
+
+post a job (add button contact admin) *
+
+employee:
+profille > applied jobs *

@@ -2,6 +2,14 @@
 	  if (!isset($_SESSION['ADMIN_USERID'])){
       redirect(web_root."admin/index.php");
      } 
+
+	 $mydb->setQuery("SELECT COMPANYID FROM `tblemployees` WHERE EMPLOYEEID=".$_SESSION['ADMIN_USERID']."");
+	 $currCompanyID = $mydb->loadResultList();
+	 $companyId = '';
+	 foreach($currCompanyID as $result) {
+		$companyId = $result->COMPANYID;
+		break;
+	 }
 ?>
 	<div class="row">
        	 <div class="col-lg-12">
@@ -24,7 +32,13 @@
 				  </thead> 
 				  <tbody>
 				  	<?php 
-				  		$mydb->setQuery("SELECT * FROM `tblcompany`");
+					  	if($_SESSION['ADMIN_USERID'] == '00018') {
+							$mydb->setQuery("SELECT * FROM `tblcompany`");
+						} else {
+							$mydb->setQuery("SELECT * FROM `tblcompany` WHERE COMPANYID = $companyId");
+						}
+
+				  		
 				  		$cur = $mydb->loadResultList(); 
 						foreach ($cur as $result) {
 				  		echo '<tr>';

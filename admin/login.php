@@ -65,6 +65,9 @@ require_once("../include/initialize.php");
         <div class="col-xs-4">
           <button type="submit" name="btnLogin" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
+        <div class="col-xs-8">
+          <a href="<?php echo web_root; ?>index.php?q=Contact" type="submit" name="btnLogin" class="btn btn-success btn-block btn-flat">Contact Administrator</a>
+        </div>  
       </div>
         <!-- /.col -->
       </div>

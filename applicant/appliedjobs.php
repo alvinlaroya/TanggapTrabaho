@@ -8,7 +8,7 @@
         <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Applied Jobs</h3> 
+              <h3 class="box-title">Applied Jobsss</h3> 
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
@@ -25,7 +25,7 @@
                   </thead>
                   <tbody>
                     <?php 
-                      $sql="SELECT * FROM `tblcompany` c,`tbljobregistration` r, `tbljob` j WHERE c.`COMPANYID`=r.`COMPANYID` AND r.`JOBID`=j.`JOBID`";
+                      $sql="SELECT * FROM `tblcompany` c,`tbljobregistration` r, `tbljob` j WHERE c.`COMPANYID`=r.`COMPANYID` AND r.`JOBID`=j.`JOBID` AND r.`APPLICANTID` = ".$_SESSION['APPLICANTID']."";
                       $mydb->setQuery($sql);
                       $cur = $mydb->loadResultList();  
                       foreach ($cur as $result) {

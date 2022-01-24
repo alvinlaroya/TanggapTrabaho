@@ -3,10 +3,18 @@
       redirect(web_root."admin/index.php");
      }
 
+	 $mydb->setQuery("SELECT COMPANYID FROM `tblemployees` WHERE EMPLOYEEID=".$_SESSION['ADMIN_USERID']."");
+	 $currCompanyID = $mydb->loadResultList();
+	 $companyId = '';
+	 foreach($currCompanyID as $result) {
+		$companyId = $result->COMPANYID;
+		break;
+	 }
+
 ?> 
 	<div class="row">
     <div class="col-lg-12">
-            <h1 class="page-header">List of Applicant's   </h1>
+            <h1 class="page-header">List of Applicant's</h1>
        		</div>
         	<!-- /.col-lg-12 -->
    		 </div>
@@ -29,7 +37,7 @@
 							  	<?php   
 							  		// $mydb->setQuery("SELECT * 
 											// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
-							  		$mydb->setQuery("SELECT * FROM `tblcompany` c  , `tbljobregistration` j, `tbljob` j2, `tblapplicants` a WHERE c.`COMPANYID`=j.`COMPANYID` AND  j.`JOBID`=j2.`JOBID` AND j.`APPLICANTID`=a.`APPLICANTID` ");
+							  		$mydb->setQuery("SELECT * FROM `tblcompany` c  , `tbljobregistration` j, `tbljob` j2, `tblapplicants` a WHERE c.`COMPANYID`=j.`COMPANYID` AND  j.`JOBID`=j2.`JOBID` AND j.`APPLICANTID`=a.`APPLICANTID` AND j2.`COMPANYID` = $companyId");
 							  		$cur = $mydb->loadResultList();
 
 									foreach ($cur as $result) { 

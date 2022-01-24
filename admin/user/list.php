@@ -3,6 +3,14 @@
       redirect(web_root."admin/index.php");
      }
 
+	 $mydb->setQuery("SELECT COMPANYID FROM `tblemployees` WHERE EMPLOYEEID=".$_SESSION['ADMIN_USERID']."");
+	 $currCompanyID = $mydb->loadResultList();
+	 $companyId = '';
+	 foreach($currCompanyID as $result) {
+		$companyId = $result->COMPANYID;
+		break;
+	 }
+
 ?> 
        	 <div class="col-lg-12">
             <h1 class="page-header">List of Users  <a href="index.php?view=add" class="btn btn-primary btn-xs  ">  <i class="fa fa-plus-circle fw-fa"></i> Add User</a>  </h1>
@@ -22,10 +30,16 @@
 				  </thead> 
 				  <tbody>
 				  	<?php 
+					  
+	 					if($_SESSION['ADMIN_USERID'] == '00018') {
+							$mydb->setQuery("SELECT * FROM  `tblusers`");
+						} else {
+							$mydb->setQuery("SELECT * 
+							FROM  `tblusers` u, `tblemployees` e WHERE u.`USERID` = e.`EMPLOYEEID` AND e.`COMPANYID` = $companyId");
+						}
 				  		// $mydb->setQuery("SELECT * 
 								// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
-				  		$mydb->setQuery("SELECT * 
-											FROM  `tblusers`");
+				  		
 				  		$cur = $mydb->loadResultList();
 
 						foreach ($cur as $result) {
