@@ -13,7 +13,7 @@
         <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Notification</h3>
+              <h3 class="box-title">Notification <?php echo $_SESSION['APPLICANTID'] ?></h3>
 
              <!--  <div class="box-tools pull-right" style="margin-bottom: 5px;">
                 <div class="has-feedback">
@@ -30,7 +30,7 @@
                 <table class="table table-hover table-striped">
                   <tbody>
                     <?php 
-                        $sql = "SELECT * FROM `tbljob` j, `tblcompany` c WHERE j.`COMPANYID`=c.`COMPANYID` ORDER BY DATEPOSTED DESC LIMIT 10";
+                        $sql = "SELECT * FROM `tbljobregistration` r, `tbljob` j, `tblcompany` c WHERE r.`JOBID` = j.`JOBID` AND j.`COMPANYID`=c.`COMPANYID` AND r.`APPLICANTID`=".$_SESSION['APPLICANTID']." ORDER BY DATEPOSTED DESC LIMIT 10";
                         $mydb->setQuery($sql);
                         $cur = $mydb->loadResultList();
                         foreach ($cur as $result) {
