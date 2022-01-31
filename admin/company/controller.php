@@ -34,7 +34,7 @@ switch ($action) {
 			redirect('index.php?view=add');
 		}else{	
 			$company = New Company();
-			$company->COMPANYNAME		= $_POST['COMPANYNAME'];
+			$company->COMPANYNAME		= str_replace("'", "''", $_POST['COMPANYNAME']);
 			$company->COMPANYADDRESS	= $_POST['COMPANYADDRESS'];
 			$company->COMPANYCONTACTNO	= $_POST['COMPANYCONTACTNO'];
 			// $company->COMPANYMISSION	= $_POST['COMPANYMISSION'];

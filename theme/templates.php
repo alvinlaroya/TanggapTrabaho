@@ -212,7 +212,7 @@
   <script>
     // email integration
     (function() {
-    emailjs.init("user_Y2yVhIyt2gAB4Liw4Gt8f");
+    emailjs.init("user_3fBGkdM4pnpKlaNEijlgl");
     })();
 
 function sendEmail() {
@@ -247,7 +247,7 @@ function sendEmail() {
     return null
   }
 
-  emailjs.send("service_p6eskr6", "template_qru2937", templateParams).then(
+  emailjs.send("service_5y0iino", "template_ctu6x79", templateParams).then(
     // service id, template id
     function (response) {
       emailContent.style.display = "flex";
